@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BlogModel>
+
+@{
+    ViewData["Title"] = "Blog List";
+}
+
+@if (TempData["Message"] is not null)
+{
+    <p class="test-success">@TempData["Message"]  </p>
+}
+
+<p>
+    <a asp-action="Create">Create New Blog</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDateDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDateDisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserNameDisplay)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDateDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDateDisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserNameDisplay)
+            </td>
+            <td>
+                <p>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </p>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
